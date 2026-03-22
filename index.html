@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SemzMoks | Nexus Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 30%, #0d0b1a, #03010a);
+            font-family: 'Courier New', 'Fira Code', 'Share Tech Mono', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Grid */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Glitch effect */
+        .glitch {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0px 0px 0px cyan; }
+            95% { text-shadow: 0px 0px 0px cyan; }
+            96% { text-shadow: -2px 0px 0px #ff00c1, 2px 0px 0px #00fff9; }
+            97% { text-shadow: 2px 0px 0px #ff00c1, -2px 0px 0px #00fff9; }
+            98% { text-shadow: -1px 0px 0px #ff00c1, 1px 0px 0px #00fff9; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            backdrop-filter: blur(3px);
+        }
+
+        .login-card {
+            background: rgba(10, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            border-radius: 24px;
+            padding: 40px 50px;
+            width: 420px;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.2), inset 0 0 20px rgba(0, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .login-card:hover {
+            border-color: cyan;
+            box-shadow: 0 0 60px rgba(0, 255, 255, 0.4);
+        }
+
+        .avatar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid cyan;
+            box-shadow: 0 0 20px cyan;
+            object-fit: cover;
+            filter: grayscale(0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: cyan;
+            font-size: 28px;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        .sub {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-bottom: 30px;
+            border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #0ff;
+            font-size: 12px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: #0ff;
+            font-family: monospace;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: cyan;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(90deg, #00a6ff, #00ffcc);
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            color: #000;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px cyan;
+        }
+
+        .status {
+            margin-top: 20px;
+            text-align: center;
+            color: #ff5555;
+            font-size: 12px;
+            min-height: 40px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 10px;
+            color: #4a5568;
+        }
+
+        ::placeholder {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+<div class="grid-overlay"></div>
+<div class="container">
+    <div class="login-card">
+        <div class="avatar">
+            <img src="https://files.catbox.moe/5v9e6s" alt="hacker-avatar" onerror="this.src='https://avatars.githubusercontent.com/u/12345678?v=4'">
+        </div>
+        <h1 class="glitch">SEMZMOKS</h1>
+        <div class="sub">// ACCESS NEXUS //</div>
+        
+        <div class="input-group">
+            <label>> USERNAME_</label>
+            <input type="text" id="username" placeholder="username" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label>> PASSWORD_</label>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+        
+        <button onclick="login()">>> AUTHENTICATE <<</button>
+        <div class="status" id="statusMsg"></div>
+        <div class="footer">[ SECURE TERMINAL v2.3 ]</div>
+    </div>
+</div>
+
+<script>
+    const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/cucurut588/privatedatabase/main/acc.json';
+
+    async function login() {
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const statusDiv = document.getElementById('statusMsg');
+        
+        if (!username || !password) {
+            statusDiv.innerHTML = '[!] LENGKAPI USERNAME DAN PASSWORD';
+            return;
+        }
+        
+        statusDiv.innerHTML = '[>] CONNECTING TO DATABASE...';
+        
+        try {
+            const response = await fetch(GITHUB_RAW_URL);
+            if (!response.ok) throw new Error('Gagal fetch database');
+            const rawText = await response.text();
+            const users = parseUserData(rawText);
+            
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                statusDiv.innerHTML = '[√] AUTHENTICATION SUCCESS';
+                localStorage.setItem('semzmoks_user', JSON.stringify(user));
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 800);
+            } else {
+                statusDiv.innerHTML = '[X] ACCESS DENIED | INVALID CREDENTIALS';
+            }
+        } catch (error) {
+            console.error(error);
+            statusDiv.innerHTML = '[!] DATABASE CONNECTION FAILED | CHECK GITHUB URL';
+        }
+    }
+    
+    function parseUserData(text) {
+        const lines = text.split('\n').filter(line => line.trim() && !line.startsWith('username'));
+        const users = [];
+        for (let line of lines) {
+            const parts = line.split('|');
+            if (parts.length >= 3) {
+                users.push({
+                    username: parts[0].trim(),
+                    password: parts[1].trim(),
+                    role: parts[2].trim()
+                });
+            }
+        }
+        return users;
+    }
+</script>
+</body>
+</html>
